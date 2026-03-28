@@ -1,7 +1,9 @@
+import KoukyoLocator from "@/KoukyoLocator";
+
 function App() {
   return (
     <>
-      <h1>hello world</h1>
+      <KoukyoLocator />
     </>
   );
 }
