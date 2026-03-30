@@ -3,7 +3,7 @@ export type LatLng = {
   lng: number;
 };
 
-const EARTH_RADIUS = 6738_000;
+const EARTH_RADIUS = 6378_000;
 const DEG_TO_RAD = Math.PI / 180;
 
 const toRad = (deg: number): number => deg * DEG_TO_RAD;
