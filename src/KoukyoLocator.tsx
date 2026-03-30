@@ -1,6 +1,8 @@
 import useLocation from "@/hooks/useLocation";
 import type { LatLng } from "@/utils/navigation";
 import koukyoKun from "@/assets/koukyo-kun.png";
+import { useState } from "react";
+import { LuEye, LuEyeOff } from "react-icons/lu";
 
 const target: LatLng = {
   lat: 35.6825,
@@ -11,6 +13,7 @@ const target: LatLng = {
 const offsetAngle = -22;
 
 function KoukyoLocator() {
+  const [isDistanceVisible, setIsDistanceVisible] = useState(true);
   const { distance, direction, status, activate, errorMessage } = useLocation(target);
 
   return (
@@ -43,7 +46,19 @@ function KoukyoLocator() {
                   style={{ transform: `rotate(${direction - offsetAngle}deg)` }}
                 />
               </div>
-              <div className="text-5xl font-semibold">{(distance / 1000).toFixed(2)} km</div>
+
+              <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-2">
+                <div></div>
+                <div className="text-5xl font-semibold">
+                  {isDistanceVisible ? (distance / 1000).toFixed(2) : "---"} km
+                </div>
+                <button
+                  className="rounded-full p-2"
+                  onClick={() => setIsDistanceVisible(!isDistanceVisible)}
+                >
+                  {isDistanceVisible ? <LuEye size={24} /> : <LuEyeOff size={24} />}
+                </button>
+              </div>
             </div>
           </div>
         )}
